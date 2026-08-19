@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: tcl-bash-tutor-api
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 7860
+    healthCheckPath: /health

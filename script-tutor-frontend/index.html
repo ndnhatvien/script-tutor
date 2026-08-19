@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCL & Bash Script Tutor</title>
+    <meta name="description" content="Học lập trình TCL và Bash Shell với môi trường thực thi tương tác">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/editor/editor.main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🖥️ TCL & Bash Script Tutor</h1>
+                <p class="subtitle">Học lập trình script với môi trường thực thi trực tuyến</p>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-icon" title="Chuyển theme">🌙</button>
+                <a href="https://github.com/ndnhatvien/script-tutor" target="_blank" class="btn-icon" title="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar with Lessons -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2>📚 Bài học</h2>
+                    <button id="sidebarToggle" class="btn-icon">×</button>
+                </div>
+
+                <div class="language-tabs">
+                    <button class="tab-btn active" data-lang="tcl">TCL</button>
+                    <button class="tab-btn" data-lang="bash">Bash</button>
+                </div>
+
+                <div class="lessons-container" id="lessonsContainer">
+                    <!-- Lessons will be loaded dynamically -->
+                </div>
+            </aside>
+
+            <!-- Editor Area -->
+            <main class="editor-area">
+                <div class="editor-header">
+                    <div class="editor-title">
+                        <span id="currentLessonTitle">Chọn bài học để bắt đầu</span>
+                    </div>
+                    <div class="editor-actions">
+                        <button id="resetCode" class="btn-secondary" title="Reset code">🔄 Reset</button>
+                        <button id="runCode" class="btn-primary" title="Chạy code (Ctrl+Enter)">▶️ Chạy</button>
+                    </div>
+                </div>
+
+                <div class="editor-container">
+                    <div id="editor" class="monaco-editor"></div>
+                </div>
+
+                <div class="output-container">
+                    <div class="output-header">
+                        <span>📤 Output</span>
+                        <div class="output-info">
+                            <span id="executionTime" class="execution-time"></span>
+                            <button id="clearOutput" class="btn-icon" title="Xóa output">🗑️</button>
+                        </div>
+                    </div>
+                    <pre id="output" class="output-content"></pre>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by <a href="https://huggingface.co" target="_blank">Hugging Face</a> |
+               Editor by <a href="https://microsoft.github.io/monaco-editor/" target="_blank">Monaco</a></p>
+        </footer>
+    </div>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button id="mobileSidebarToggle" class="mobile-sidebar-toggle">📚</button>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <span>Đang thực thi...</span>
+    </div>
+
+    <!-- Monaco Editor -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+    <script src="config.js"></script>
+    <script src="lessons.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@ const CONFIG = {
     // API URL - Backend deployment options:
 
     // Option 1: Railway.app (Recommended - $5 credit/month)
-    API_URL: 'https://YOUR-APP.up.railway.app/api',
+    API_URL: 'https://script-tutor-production.up.railway.app/api',
 
     // Option 2: Render.com (Free - sleeps after 15min)
     // API_URL: 'https://tcl-bash-tutor-api.onrender.com/api',

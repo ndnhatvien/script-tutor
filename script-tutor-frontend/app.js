@@ -4,7 +4,7 @@
 
     // State
     let editor = null;
-    let currentLanguage = 'tcl';
+    let currentLanguage = 'bash';
     let currentLesson = null;
     let isDarkTheme = true;
 

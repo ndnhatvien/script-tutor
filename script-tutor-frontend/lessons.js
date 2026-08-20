@@ -415,25 +415,25 @@ Chạy khi điều kiện đúng
 fruits=("apple" "banana" "orange" "grape")
 
 # Độ dài array
-echo "Số phần tử: ${#fruits[@]}"
+echo "Số phần tử: \${#fruits[@]}"
 
 # Truy cập phần tử
-echo "Phần tử đầu: ${fruits[0]}"
-echo "Phần tử thứ 2: ${fruits[1]}"
+echo "Phần tử đầu: \${fruits[0]}"
+echo "Phần tử thứ 2: \${fruits[1]}"
 
 # Thêm phần tử
 fruits+=("mango")
 
 # Duyệt array
-for fruit in "${fruits[@]}"; do
+for fruit in "\${fruits[@]}"; do
     echo "- $fruit"
 done`,
             explanation: `
 **Arrays trong Bash**
 
 array=(item1 item2)
-${array[index]} : truy cập
-${#array[@]} : độ dài
+\${array[index]} : truy cập
+\${#array[@]} : độ dài
 array+=(item) : thêm
             `
         },

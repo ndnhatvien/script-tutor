@@ -29,5 +29,5 @@ RUN mkdir -p /tmp && chmod 1777 /tmp
 # Expose port (Railway will override with $PORT)
 EXPOSE 8080
 
-# Run the application
-CMD ["./start.sh"]
+# Run the application on port 8080
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]

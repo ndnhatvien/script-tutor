@@ -395,36 +395,38 @@ puts "10.0 / 3 = $result"
 `,
             explanation: `
 **EXPR COMMAND**
-- expr {biểu_thức}
-- {} BẮT BUỘC để tránh lỗi
+- \`expr {biểu_thức}\`
+- \`{}\` BẮT BUỘC để tránh lỗi
 - Thực hiện tính toán
 
 **TOÁN TỬ**
-- + : cộng
-- - : trừ
-- * : nhân
-- / : chia
-- % : chia lấy dư
-- ** : lũy thừa
+- \`+\` : cộng
+- \`-\` : trừ
+- \`*\` : nhân
+- \`/\` : chia
+- \`%\` : chia lấy dư
+- \`**\` : lũy thừa
 
 **ƯU TIÊN**
-- *, / trước +, -
-- () thay đổi ưu tiên
-- expr {2 + 3 * 4} = 14
-- expr {(2 + 3) * 4} = 20
+- \`*\`, \`/\` trước \`+\`, \`-\`
+- \`()\` thay đổi ưu tiên
+- \`expr {2 + 3 * 4}\` = 14
+- \`expr {(2 + 3) * 4}\` = 20
 
 **SỐ THỰC**
-- Dùng .0 để ép kiểu
-- 10 / 3 = 3 (nguyên)
-- 10.0 / 3 = 3.333... (thực)
+- Dùng \`.0\` để ép kiểu
+- \`10 / 3\` = 3 (nguyên)
+- \`10.0 / 3\` = 3.333... (thực)
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`tcl
 set r 5
 set pi 3.14159
 set area [expr {$pi * $r ** 2}]
 set circumference [expr {2 * $pi * $r}]
 puts "Diện tích: $area"
 puts "Chu vi: $circumference"
+\`\`\`
             `
         },
 
@@ -472,34 +474,38 @@ if {$num % 2 == 0} {
 `,
             explanation: `
 **CẤU TRÚC IF**
+\`\`\`tcl
 if {điều_kiện} {
-    # code
+    # code khi đúng
 } elseif {điều_kiện_2} {
-    # code
+    # code khi điều kiện 2 đúng
 } else {
-    # code
+    # code khi tất cả sai
 }
+\`\`\`
 
 **TOÁN TỬ SO SÁNH**
-- == : bằng
-- != : khác
-- < : nhỏ hơn
-- <= : nhỏ hơn hoặc bằng
-- > : lớn hơn
-- >= : lớn hơn hoặc bằng
+- \`==\` : bằng
+- \`!=\` : khác
+- \`<\` : nhỏ hơn
+- \`<=\` : nhỏ hơn hoặc bằng
+- \`>\` : lớn hơn
+- \`>=\` : lớn hơn hoặc bằng
 
 **TOÁN TỬ LOGIC**
-- && : và (AND)
-- || : hoặc (OR)
-- ! : phủ định (NOT)
+- \`&&\` : và (AND)
+- \`||\` : hoặc (OR)
+- \`!\` : phủ định (NOT)
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`tcl
 set year 2024
 if {$year % 400 == 0 || ($year % 4 == 0 && $year % 100 != 0)} {
     puts "Năm nhuận"
 } else {
     puts "Không phải năm nhuận"
 }
+\`\`\`
             `
         },
         {
@@ -543,27 +549,31 @@ for {set i 2} {$i <= 10} {incr i 2} {
 `,
             explanation: `
 **VÒNG LẶP FOR**
+\`\`\`tcl
 for {khởi_tạo} {điều_kiện} {bước_nhảy} {
     # code
 }
+\`\`\`
 
 **INCR COMMAND**
-- incr i: Tăng i lên 1
-- incr i 2: Tăng i lên 2
-- incr i -1: Giảm i đi 1
+- \`incr i\`: Tăng i lên 1
+- \`incr i 2\`: Tăng i lên 2
+- \`incr i -1\`: Giảm i đi 1
 
 **CẤU TRÚC**
-- {set i 1}: Khởi tạo
-- {$i <= 10}: Điều kiện tiếp tục
-- {incr i}: Sau mỗi lần lặp
+- \`{set i 1}\`: Khởi tạo
+- \`{$i <= 10}\`: Điều kiện tiếp tục
+- \`{incr i}\`: Sau mỗi lần lặp
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`tcl
 set n 5
 set factorial 1
 for {set i 1} {$i <= $n} {incr i} {
     set factorial [expr {$factorial * $i}]
 }
 puts "$n! = $factorial"
+\`\`\`
             `
         },
         {
@@ -606,21 +616,24 @@ puts "Tổng: $sum"
 `,
             explanation: `
 **WHILE LOOP**
+\`\`\`tcl
 while {điều_kiện} {
     # code
     # Phải thay đổi điều kiện!
 }
+\`\`\`
 
 **LƯU Ý**
 - Điều kiện phải thay đổi
 - Nếu không → vòng lặp vô hạn
-- Dùng incr hoặc set
+- Dùng \`incr\` hoặc \`set\`
 
 **BREAK & CONTINUE**
-- break: Thoát khỏi vòng lặp
-- continue: Bỏ qua iteration hiện tại
+- \`break\`: Thoát khỏi vòng lặp
+- \`continue\`: Bỏ qua iteration hiện tại
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`tcl
 set n 10
 set a 0
 set b 1
@@ -632,6 +645,7 @@ while {$count < $n} {
     incr count
 }
 puts "Fibonacci($n) = $b"
+\`\`\`
             `
         },
         {
@@ -686,24 +700,27 @@ foreach fruit $fruits {
 `,
             explanation: `
 **LỆNH LIST**
-- llength $list: Số phần tử
-- lindex $list index: Lấy phần tử
-- lappend list item: Thêm phần tử
-- linsert $list index item: Chèn
-- lreplace $list start end: Thay thế
+- \`llength $list\`: Số phần tử
+- \`lindex $list index\`: Lấy phần tử
+- \`lappend list item\`: Thêm phần tử
+- \`linsert $list index item\`: Chèn
+- \`lreplace $list start end\`: Thay thế
 
 **INDEX**
-- 0: Phần tử đầu
-- end: Phần tử cuối
-- end-1: Phần tử kế cuối
+- \`0\`: Phần tử đầu
+- \`end\`: Phần tử cuối
+- \`end-1\`: Phần tử kế cuối
 
 **FOREACH**
+\`\`\`tcl
 foreach item $list {
     puts $item
 }
-- Duyệt qua từng phần tử
+\`\`\`
+- Duyệt qua từng phần tử trong danh sách
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`tcl
 set scores {8.5 9.0 7.5 8.0 9.5}
 set sum 0
 set count 0
@@ -717,6 +734,7 @@ set avg [expr {$sum / [llength $scores]}]
 puts "Tổng: $sum"
 puts "TB: $avg"
 puts "Số điểm >= 8.0: $count"
+\`\`\`
             `
         },
         {
@@ -781,30 +799,32 @@ calculate_rectangle 10 5
 `,
             explanation: `
 **ĐỊNH NGHĨA PROCEDURE**
+\`\`\`tcl
 proc tên {tham_số1 tham_số2} {
-    # code
+    # code thực thi
     return giá_trị
 }
+\`\`\`
 
 **THAM SỐ**
-- Liệt kê trong {}
+- Liệt kê trong \`{}\`
 - Ngăn cách bằng khoảng trắng
-- proc add {a b} {...}
+- Ví dụ: \`proc add {a b} {...}\`
 
 **RETURN**
-- return giá_trị
-- Trả về ngay lập tức
-- Nếu không return → trả về kết quả lệnh cuối
+- \`return giá_trị\`: Trả về kết quả ngay lập tức
+- Nếu không có \`return\` → trả về kết quả của lệnh cuối cùng
 
 **GỌI PROCEDURE**
-- tên tham_số1 tham_số2
-- set result [tên args]
+- \`tên tham_số1 tham_số2\`
+- \`set result [tên args]\`
 
 **ĐỆ QUY**
 - Procedure gọi chính nó
 - Phải có điều kiện dừng
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`tcl
 proc is_prime {n} {
     if {$n <= 1} {
         return 0
@@ -821,6 +841,7 @@ puts "7: [is_prime 7]"
 puts "10: [is_prime 10]"
 puts "13: [is_prime 13]"
 puts "20: [is_prime 20]"
+\`\`\`
             `
         }
     ],
@@ -856,26 +877,33 @@ echo "Dòng 3"
 
 `,
             explanation: `
-**SHEBANG (#!/bin/bash)**
-- Dòng đầu tiên của script
-- Chỉ định shell sẽ thực thi
-- Bắt buộc khi chạy file .sh
+**1. SHEBANG (#!/bin/bash)**
+Dòng đầu tiên chỉ định trình thông dịch shell thực thi script:
+\`\`\`bash
+#!/bin/bash
+\`\`\`
 
-**COMMENT (#)**
-- Ghi chú, giải thích code
-- Shell bỏ qua các dòng bắt đầu bằng #
-- Giúp code dễ hiểu hơn
+**2. GHI CHÚ TRONG BASH (#)**
+Shell sẽ bỏ qua các dòng bắt đầu bằng dấu \`#\`:
+\`\`\`bash
+# Đây là ghi chú đầu dòng
+echo "Hello, World!"  # Ghi chú sau câu lệnh
+\`\`\`
 
-**LỆNH ECHO**
-- Cú pháp: echo "text"
-- In text ra màn hình (stdout)
-- Tự động xuống dòng sau mỗi lệnh
-- echo "" tạo dòng trống
+**3. LỆNH IN RA MÀN HÌNH (ECHO)**
+\`\`\`bash
+echo "Hello, World!"           # In và tự động xuống dòng
+echo -n "Không xuống dòng: "   # Tham số -n
+echo "Dòng tiếp tục"
+echo -e "Dòng 1\nDòng 2\tTab"   # Tham số -e cho escape sequence
+\`\`\`
 
-**GỢI Ý BÀI TẬP:**
+**4. GỢI Ý BÀI TẬP:**
+\`\`\`bash
 echo "Tên: Nguyễn Văn A"
 echo "Tuổi: 20"
 echo "Sở thích: Lập trình"
+\`\`\`
             `
         },
         {
@@ -913,30 +941,35 @@ echo "Năm nay tôi \${age} tuổi"
 
 `,
             explanation: `
-**KHAI BÁO BIẾN**
-- Cú pháp: tên=giá_trị
-- KHÔNG có khoảng trắng quanh dấu =
-- Đúng: name="An"
-- Sai: name = "An"
+**1. KHAI BÁO BIẾN**
+Cú pháp: \`tên=giá_trị\` *(Lưu ý: KHÔNG có khoảng trắng quanh dấu \`=\`)*:
+\`\`\`bash
+name="Nguyen Van A"
+age=25
+city="Ha Noi"
+\`\`\`
 
-**SỬ DỤNG BIẾN**
-- $tên_biến: dạng ngắn
-- \${tên_biến}: dạng đầy đủ (tốt hơn)
-- \${} giúp tách biến khỏi text
+**2. SỬ DỤNG BIẾN**
+\`\`\`bash
+echo "Tên: $name"
+echo "Tuổi: \${age}"
+echo "User: \${name}_admin"   # Dấu {} giúp phân tách tên biến rõ ràng
+\`\`\`
 
-**QUY TẮC ĐặT TÊN**
-- Chữ cái, số, gạch dưới (_)
-- KHÔNG bắt đầu bằng số
-- Phân biệt HOA/thường
-- Nên dùng tên có nghĩa
+**3. QUY TẮC ĐẶT TÊN BIẾN**
+- Chữ cái, số, gạch dưới (\`_\`)
+- Không bắt đầu bằng số
+- Phân biệt chữ HOA / chữ thường (\`Name\` khác \`name\`)
 
-**GỢI Ý BÀI TẬP:**
+**4. GỢI Ý BÀI TẬP:**
+\`\`\`bash
 product="Laptop"
 price=15000000
 quantity=2
 echo "Sản phẩm: $product"
 echo "Giá: $price VNĐ"
 echo "Số lượng: $quantity"
+\`\`\`
             `
         },
         {
@@ -981,32 +1014,33 @@ echo "(2 + 3) * 4 = $result"
 `,
             explanation: `
 **PHÉP TOÁN SỐ NGUYÊN: \$((...))**
-- + : cộng
-- - : trừ
-- * : nhân
-- / : chia nguyên (bỏ phần dư)
-- % : chia lấy dư
-- ** : lũy thừa
+- \`+\` : cộng
+- \`-\` : trừ
+- \`*\` : nhân
+- \`/\` : chia nguyên (bỏ phần dư)
+- \`%\` : chia lấy dư
+- \`**\` : lũy thừa
 
 **ƯU TIÊN THỰC HIỆN**
-- Giống toán học: *, / trước +, -
-- Dùng () để thay đổi ưu tiên
-- \$((2 + 3 * 4)) = 14
-- \$(((2 + 3) * 4)) = 20
+- Giống toán học: \`*\`, \`/\` trước \`+\`, \`-\`
+- Dùng \`()\` để thay đổi mức độ ưu tiên
+- \`$((2 + 3 * 4))\` = 14
+- \`$(((2 + 3) * 4))\` = 20
 
 **PHÉP TOÁN SỐ THỰC**
-- Dùng bc (basic calculator)
-- scale=N: N chữ số thập phân
-- echo "scale=2; 10/3" | bc
-- Kết quả: 3.33
+- Dùng \`bc\` (basic calculator)
+- \`scale=N\`: N chữ số thập phân
+- Ví dụ: \`echo "scale=2; 10/3" | bc\` → 3.33
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`bash
 length=12
 width=5
-area=\$((length * width))
-perimeter=\$((2 * (length + width)))
+area=$((length * width))
+perimeter=$((2 * (length + width)))
 echo "Diện tích: $area"
 echo "Chu vi: $perimeter"
+\`\`\`
             `
         },
         {
@@ -1053,35 +1087,43 @@ fi
 `,
             explanation: `
 **CẤU TRÚC IF**
+\`\`\`bash
 if [ điều_kiện ]; then
     # code khi đúng
 elif [ điều_kiện_2 ]; then
     # code khi điều kiện 2 đúng
 else
-    # code khi tất cả sai
+    # code khi tất cả đều sai
 fi
+\`\`\`
 
-**TOÁN TỬ SO SÁNH**
-- -eq : bằng (equal)
-- -ne : khác (not equal)
-- -gt : lớn hơn (greater than)
-- -ge : lớn hơn hoặc bằng
-- -lt : nhỏ hơn (less than)
-- -le : nhỏ hơn hoặc bằng
+**TOÁN TỬ SO SÁNH SỐ HỌC**
+- \`-eq\` : bằng (equal)
+- \`-ne\` : khác (not equal)
+- \`-gt\` : lớn hơn (greater than)
+- \`-ge\` : lớn hơn hoặc bằng
+- \`-lt\` : nhỏ hơn (less than)
+- \`-le\` : nhỏ hơn hoặc bằng
 
-**LƯU Ý**
-- Có khoảng trắng sau [ và trước ]
-- Đúng: [ $a -eq 5 ]
-- Sai: [$a -eq 5]
-- then phải ở dòng riêng HOẶC sau ;
+**LƯU Ý QUAN TRỌNG**
+- Bắt buộc có khoảng trắng sau \`[\` và trước \`]\`
+- Đúng: \`[ $a -eq 5 ]\`
+- Sai: \`[$a -eq 5]\`
+- \`then\` phải nằm ở dòng riêng HOẶC sau dấu \`;\`
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`bash
 age=25
 if [ $age -lt 13 ]; then
     echo "Thiếu nhi"
 elif [ $age -lt 18 ]; then
     echo "Thiếu niên"
-...
+elif [ $age -lt 60 ]; then
+    echo "Người lớn"
+else
+    echo "Người cao tuổi"
+fi
+\`\`\`
             `
         },
         {
@@ -1128,31 +1170,39 @@ done
             explanation: `
 **FOR LOOP - 3 CÁCH**
 
-**1. Lặp qua danh sách**
+**1. Lặp qua danh sách:**
+\`\`\`bash
 for item in item1 item2 item3; do
     echo "$item"
 done
+\`\`\`
 
-**2. Lặp với range {start..end}**
+**2. Lặp với range {start..end}:**
+\`\`\`bash
 for i in {1..10}; do
     echo "$i"
 done
-- {1..10}: từ 1 đến 10
-- {1..10..2}: từ 1 đến 10, bước nhảy 2
+\`\`\`
+- \`{1..10}\`: từ 1 đến 10
+- \`{1..10..2}\`: từ 1 đến 10, bước nhảy 2
 
-**3. C-style for**
+**3. C-style for:**
+\`\`\`bash
 for ((i=0; i<10; i++)); do
     echo "$i"
 done
-- Khởi tạo; điều kiện; bước nhảy
-- i++ tăng i lên 1
+\`\`\`
+- Khởi tạo; điều kiện lặp; bước nhảy
+- \`i++\` tăng biến \`i\` lên 1
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`bash
 sum=0
 for i in {1..10}; do
-    sum=\$((sum + i))
+    sum=$((sum + i))
 done
 echo "Tổng: $sum"
+\`\`\`
             `
         },
         {
@@ -1196,34 +1246,37 @@ echo "Tổng: $sum"
 `,
             explanation: `
 **WHILE LOOP**
+\`\`\`bash
 while [ điều_kiện ]; do
-    # code
-    # Phải có lệnh thay đổi điều kiện!
+    # code thực thi
+    # Phải có lệnh cập nhật biến điều kiện!
 done
+\`\`\`
 
 **LƯU Ý QUAN TRỌNG**
-- Phải có lệnh thay đổi biến kiểm tra
-- Nếu không → vòng lặp vô hạn
-- Ví dụ: count=\$((count + 1))
+- Bắt buộc phải có lệnh cập nhật biến kiểm tra trong thân vòng lặp
+- Nếu không → rơi vào vòng lặp vô tận (infinite loop)
+- Ví dụ: \`count=$((count + 1))\`
 
 **SO SÁNH FOR vs WHILE**
-- FOR: Biết trước số lần lặp
-- WHILE: Lặp đến khi điều kiện sai
-- WHILE linh hoạt hơn FOR
+- \`FOR\`: Sử dụng khi biết trước số lần lặp hoặc duyệt danh sách
+- \`WHILE\`: Lặp đến khi biểu thức điều kiện trở thành sai (false)
 
 **BREAK & CONTINUE**
-- break: Thoát khỏi vòng lặp
-- continue: Bỏ qua iteration hiện tại
+- \`break\`: Thoát hoàn toàn khỏi vòng lặp
+- \`continue\`: Bỏ qua các dòng sau và nhảy sang lần lặp tiếp theo
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`bash
 num=101
 while [ $num -le 200 ]; do
-    if [ \$((num % 7)) -eq 0 ]; then
+    if [ $((num % 7)) -eq 0 ]; then
         echo "Số cần tìm: $num"
         break
     fi
-    num=\$((num + 1))
+    num=$((num + 1))
 done
+\`\`\`
             `
         },
         {
@@ -1277,42 +1330,53 @@ done
 `,
             explanation: `
 **KHAI BÁO ARRAY**
+\`\`\`bash
 arr=(item1 item2 item3)
 arr=("apple" "banana" "orange")
+\`\`\`
 
 **TRUY CẬP PHẦN TỬ**
-- \${arr[0]}: phần tử đầu tiên
-- \${arr[1]}: phần tử thứ hai
-- \${arr[-1]}: phần tử cuối
-- \${arr[@]}: tất cả phần tử
-- \${#arr[@]}: số phần tử
+- \`\${arr[0]}\`: phần tử đầu tiên (index 0)
+- \`\${arr[1]}\`: phần tử thứ hai
+- \`\${arr[-1]}\`: phần tử cuối cùng
+- \`\${arr[@]}\`: toàn bộ phần tử trong mảng
+- \`\${#arr[@]}\`: tổng số phần tử (độ dài mảng)
 
 **THAO TÁC ARRAY**
-- arr+=(item): thêm phần tử cuối
-- unset arr[index]: xóa phần tử
-- arr[index]=value: sửa phần tử
+- \`arr+=(item)\`: thêm phần tử vào cuối mảng
+- \`unset arr[index]\`: xóa phần tử tại index
+- \`arr[index]=value\`: gán/sửa phần tử
 
 **DUYỆT ARRAY**
+\`\`\`bash
 for item in "\${arr[@]}"; do
     echo "$item"
 done
+\`\`\`
 
 **DUYỆT VỚI INDEX**
+\`\`\`bash
 for i in "\${!arr[@]}"; do
     echo "\${arr[i]}"
 done
+\`\`\`
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`bash
 scores=(85 92 78 95 88)
 sum=0
 max=0
 for score in "\${scores[@]}"; do
-    sum=\$((sum + score))
+    sum=$((sum + score))
     if [ $score -gt $max ]; then
         max=$score
     fi
 done
-avg=\$((sum / \${#scores[@]}))
+avg=$((sum / \${#scores[@]}))
+echo "Tổng điểm: $sum"
+echo "Điểm trung bình: $avg"
+echo "Điểm cao nhất: $max"
+\`\`\`
             `
         },
         {
@@ -1369,36 +1433,44 @@ calculate_area 10 5
 `,
             explanation: `
 **ĐỊNH NGHĨA FUNCTION**
+\`\`\`bash
 function_name() {
-    # code
+    # code thực thi
 }
+\`\`\`
 
 Hoặc:
+\`\`\`bash
 function function_name {
-    # code
+    # code thực thi
 }
+\`\`\`
 
-**THAM SỐ**
-- $1, $2, $3: tham số thứ 1, 2, 3
-- $@: tất cả tham số
-- $#: số lượng tham số
+**THAM SỐ TRUYỀN VÀO**
+- \`$1, $2, $3\`: tham số thứ 1, 2, 3
+- \`$@\`: danh sách tất cả tham số
+- \`$#\`: tổng số lượng tham số
 
 **GỌI FUNCTION**
+\`\`\`bash
 function_name arg1 arg2 arg3
+\`\`\`
 
 **RETURN VALUE**
-- Dùng echo để "return"
-- result=\$(function_name args)
-- Hoặc dùng biến global
+- Sử dụng \`echo\` để trả về kết quả
+- Nhận kết quả: \`result=$(function_name args)\`
 
-**BIẾN LOCAL**
+**BIẾN CỤC BỘ (LOCAL)**
+\`\`\`bash
 my_func() {
     local var="local value"
     echo "$var"
 }
-- local: biến chỉ tồn tại trong function
+\`\`\`
+- \`local\`: khai báo biến chỉ tồn tại trong phạm vi hàm
 
 **GỢI Ý BÀI TẬP:**
+\`\`\`bash
 is_prime() {
     num=$1
     if [ $num -le 1 ]; then
@@ -1407,7 +1479,7 @@ is_prime() {
     fi
 
     for ((i=2; i<num; i++)); do
-        if [ \$((num % i)) -eq 0 ]; then
+        if [ $((num % i)) -eq 0 ]; then
             echo "Không phải số nguyên tố"
             return
         fi
@@ -1418,6 +1490,7 @@ is_prime() {
 is_prime 7
 is_prime 10
 is_prime 13
+\`\`\`
             `
         }
     ]

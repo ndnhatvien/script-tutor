@@ -8,22 +8,8 @@
     let currentLesson = null;
     let isDarkTheme = true;
 
-    // DOM Elements
-    const elements = {
-        lessonsContainer: document.getElementById('lessonsContainer'),
-        editor: document.getElementById('editor'),
-        output: document.getElementById('output'),
-        runBtn: document.getElementById('runCode'),
-        resetBtn: document.getElementById('resetCode'),
-        clearOutputBtn: document.getElementById('clearOutput'),
-        themeToggle: document.getElementById('themeToggle'),
-        sidebarToggle: document.getElementById('sidebarToggle'),
-        mobileSidebarToggle: document.getElementById('mobileSidebarToggle'),
-        sidebar: document.getElementById('sidebar'),
-        currentLessonTitle: document.getElementById('currentLessonTitle'),
-        executionTime: document.getElementById('executionTime'),
-        loadingIndicator: document.getElementById('loadingIndicator')
-    };
+    // DOM Elements (will be initialized after DOM ready)
+    let elements = null;
 
     // Initialize Monaco Editor
     function initEditor() {
@@ -223,6 +209,23 @@
 
     // Initialize app
     function init() {
+        // Initialize DOM elements
+        elements = {
+            lessonsContainer: document.getElementById('lessonsContainer'),
+            editor: document.getElementById('editor'),
+            output: document.getElementById('output'),
+            runBtn: document.getElementById('runCode'),
+            resetBtn: document.getElementById('resetCode'),
+            clearOutputBtn: document.getElementById('clearOutput'),
+            themeToggle: document.getElementById('themeToggle'),
+            sidebarToggle: document.getElementById('sidebarToggle'),
+            mobileSidebarToggle: document.getElementById('mobileSidebarToggle'),
+            sidebar: document.getElementById('sidebar'),
+            currentLessonTitle: document.getElementById('currentLessonTitle'),
+            executionTime: document.getElementById('executionTime'),
+            loadingIndicator: document.getElementById('loadingIndicator')
+        };
+
         initEditor();
         loadLessons();
         setupEventListeners();

@@ -19,6 +19,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY script-tutor-backend/app.py .
 
+# Copy entrypoint script
+COPY start.sh .
+RUN chmod +x start.sh
+
 # Create temp directory with proper permissions
 RUN mkdir -p /tmp && chmod 1777 /tmp
 
@@ -26,5 +30,4 @@ RUN mkdir -p /tmp && chmod 1777 /tmp
 EXPOSE 8080
 
 # Run the application
-# Railway injects $PORT environment variable
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-8080}"]
+CMD ["./start.sh"]

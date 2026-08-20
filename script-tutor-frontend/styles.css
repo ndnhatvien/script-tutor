@@ -236,8 +236,9 @@ body {
 }
 
 .editor-container {
-    flex: 1;
+    flex: 0 0 350px; /* Fixed height instead of flex:1 */
     min-height: 300px;
+    max-height: 400px;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -247,7 +248,7 @@ body {
 
 /* Output Container */
 .output-container {
-    height: 200px;
+    height: 250px; /* Increased from 200px */
     display: flex;
     flex-direction: column;
     background: #1e1e1e;

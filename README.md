@@ -22,8 +22,8 @@
 
 ## 🎯 Demo
 
-- **Live Demo**: [https://your-username.github.io/script-tutor/](https://your-username.github.io/script-tutor/)
-- **API Backend**: [https://your-username-tcl-bash-tutor-api.hf.space](https://your-username-tcl-bash-tutor-api.hf.space)
+- **Live Demo**: [https://ndnhatvien.github.io/script-tutor/](https://ndnhatvien.github.io/script-tutor/)
+- **API Backend**: [https://script-tutor-production.up.railway.app](https://script-tutor-production.up.railway.app/health)
 
 ---
 
@@ -43,13 +43,13 @@
                          │ { code, timeout }
                          ▼
 ┌─────────────────────────────────────────────────────────────┐
-│           Backend (Hugging Face Spaces)                     │
+│              Backend (Railway.app)                          │
 │  ┌─────────────────────────────────────────────────────┐   │
 │  │  FastAPI Server (Docker Container)                   │   │
-│  │  ├─ TCL Interpreter (tclsh)                          │   │
-│  │  ├─ Bash Shell                                       │   │
+│  │  ├─ TCL Interpreter (tclsh 8.6)                      │   │
+│  │  ├─ Bash Shell (5.x)                                 │   │
 │  │  ├─ Sandboxed Execution                              │   │
-│  │  └─ Timeout Protection                               │   │
+│  │  └─ Timeout Protection (5s default)                  │   │
 │  └─────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -68,13 +68,17 @@ script-tutor/
 │   ├── app.js                      # Application logic
 │   └── README.md                   # Frontend docs
 │
-├── script-tutor-backend/           # Backend - Hugging Face Spaces
+├── script-tutor-backend/           # Backend - Railway
 │   ├── app.py                      # FastAPI application
 │   ├── requirements.txt            # Python dependencies
-│   ├── Dockerfile                  # Docker configuration
 │   └── README.md                   # Backend docs
 │
-├── DEPLOYMENT_GUIDE.md             # 🚀 Hướng dẫn deploy chi tiết
+├── Dockerfile                      # Docker config (root level)
+├── railway.json                    # Railway deployment config
+├── start.sh                        # Entrypoint script
+├── DEPLOYMENT_ALTERNATIVES.md      # Deployment options
+├── RAILWAY_DEPLOY.md              # 🚀 Railway quick guide
+├── QUICKSTART.md                   # 10-minute setup
 └── README.md                       # This file
 ```
 
@@ -84,25 +88,19 @@ script-tutor/
 
 ### Option 1: Sử dụng Demo có sẵn
 
-Truy cập demo: [https://your-username.github.io/script-tutor/](https://your-username.github.io/script-tutor/)
+Truy cập: [https://ndnhatvien.github.io/script-tutor/](https://ndnhatvien.github.io/script-tutor/)
 
-### Option 2: Deploy của bạn (Recommended)
+### Option 2: Deploy của bạn (10 phút)
 
-**Bước 1: Deploy Backend (5 phút)**
+**Đọc [QUICKSTART.md](QUICKSTART.md) hoặc [RAILWAY_DEPLOY.md](RAILWAY_DEPLOY.md)**
 
-1. Tạo tài khoản [Hugging Face](https://huggingface.co/join)
-2. Tạo Space mới với SDK: **Docker**
-3. Upload files từ `script-tutor-backend/`
-4. Đợi build hoàn tất
+**Tóm tắt:**
 
-**Bước 2: Deploy Frontend (3 phút)**
+1. **Backend (Railway)**: Fork repo → Connect to Railway → Deploy
+2. **Frontend (GitHub Pages)**: Settings → Pages → Source: gh-pages
+3. **Update config**: Sửa `API_URL` trong `config.js`
 
-1. Fork repo này hoặc tạo repo mới
-2. Copy files từ `script-tutor-frontend/`
-3. Cập nhật `API_URL` trong `config.js`
-4. Enable GitHub Pages trong Settings
-
-**Chi tiết đầy đủ:** Xem [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
+**Chi tiết đầy đủ:** [DEPLOYMENT_ALTERNATIVES.md](DEPLOYMENT_ALTERNATIVES.md) - 5 hosting options
 
 ---
 
@@ -203,9 +201,15 @@ Truy cập demo: [https://your-username.github.io/script-tutor/](https://your-us
 - **TCL 8.6** - TCL interpreter
 - **Bash 5.x** - Shell interpreter
 - **Docker** - Containerization
-- **Railway / Render / Fly.io** - Hosting platforms (free)
+- **Railway.app** - Hosting platform (primary)
 
-> **Note:** Xem [DEPLOYMENT_ALTERNATIVES.md](DEPLOYMENT_ALTERNATIVES.md) cho deployment options.
+**Alternative Hosting:**
+- Render.com (free tier)
+- Fly.io (free tier)
+- Koyeb (free tier)
+- Akamai/Linode (VPS with $100 credit)
+
+> **Note:** Xem [DEPLOYMENT_ALTERNATIVES.md](DEPLOYMENT_ALTERNATIVES.md) cho tất cả deployment options.
 
 ---
 
@@ -277,7 +281,7 @@ Tóm tắt:
 
 - **Monaco Editor** - Microsoft
 - **FastAPI** - Sebastián Ramírez
-- **Hugging Face** - Hosting platform
+- **Railway.app** - Backend hosting platform
 - **GitHub** - Code hosting & Pages
 - **TCL Community** - Language support
 - **Bash Community** - Shell scripting resources
@@ -290,24 +294,15 @@ Tóm tắt:
 
 Gặp vấn đề? [Open an issue](https://github.com/ndnhatvien/script-tutor/issues)
 
-### Email
-
-your-email@example.com
-
-### Social
-
-- GitHub: [@ndnhatvien](https://github.com/ndnhatvien)
-- Twitter: [@your_handle](https://twitter.com/your_handle)
-
 ---
 
 ## 🔗 Links
 
-- **Documentation**: [/docs](./docs)
-- **Deployment Guide**: [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
-- **Frontend README**: [Frontend Docs](script-tutor-frontend/README.md)
-- **Backend README**: [Backend Docs](script-tutor-backend/README.md)
-- **Changelog**: [CHANGELOG.md](CHANGELOG.md)
+- **Live Demo**: [https://ndnhatvien.github.io/script-tutor/](https://ndnhatvien.github.io/script-tutor/)
+- **API Health**: [https://script-tutor-production.up.railway.app/health](https://script-tutor-production.up.railway.app/health)
+- **Deployment Guide**: [DEPLOYMENT_ALTERNATIVES.md](DEPLOYMENT_ALTERNATIVES.md)
+- **Railway Quick Start**: [RAILWAY_DEPLOY.md](RAILWAY_DEPLOY.md)
+- **10-min Setup**: [QUICKSTART.md](QUICKSTART.md)
 
 ---
 
@@ -317,6 +312,6 @@ your-email@example.com
 
 Made with ❤️ for the scripting community
 
-[Demo](https://your-username.github.io/script-tutor/) • [Report Bug](https://github.com/ndnhatvien/script-tutor/issues) • [Request Feature](https://github.com/ndnhatvien/script-tutor/issues)
+[Demo](https://ndnhatvien.github.io/script-tutor/) • [Report Bug](https://github.com/ndnhatvien/script-tutor/issues) • [Request Feature](https://github.com/ndnhatvien/script-tutor/issues)
 
 </div>

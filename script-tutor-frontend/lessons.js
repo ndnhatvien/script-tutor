@@ -5,54 +5,134 @@ const LESSONS = {
             id: 'tcl-01',
             title: 'Bài 1: Hello World',
             description: 'Làm quen với TCL',
-            code: `# Câu lệnh đầu tiên trong TCL
+            code: `# ===== LÝ THUYẾT =====
+# TCL (Tool Command Language): Ngôn ngữ script
+# Cú pháp: lệnh tham_số1 tham_số2 ...
+# Comment: Bắt đầu bằng #
+
+# ===== VÍ DỤ =====
+# Lệnh puts: In ra màn hình
 puts "Hello, World!"
 
 # In nhiều dòng
 puts "Chào mừng đến với"
-puts "TCL Programming"`,
+puts "TCL Programming"
+
+# In với dấu xuống dòng
+puts "Dòng 1\\nDòng 2\\nDòng 3"
+
+# ===== BÀI TẬP =====
+# TODO: Tạo chương trình giới thiệu
+# 1. In tiêu đề "=== GIỚI THIỆU ==="
+# 2. In tên trường của bạn
+# 3. In khoa của bạn
+# 4. In "=== KẾT THÚC ==="
+# (Viết code bên dưới)
+
+`,
             explanation: `
-**Lệnh puts**
+**CÚ PHÁP TCL**
+- Lệnh theo sau là tham số
+- lệnh tham_số1 tham_số2 ...
+- Dấu {} nhóm nhiều từ thành 1 tham số
 
-Lệnh 'puts' dùng để in ra màn hình.
-Cú pháp: puts "nội dung"
+**LỆNH PUTS**
+- puts "text": In ra stdout
+- Tự động xuống dòng
+- puts -nonewline "text": Không xuống dòng
 
-Thử chỉnh sửa và chạy code!
+**COMMENT**
+- # comment: Ghi chú
+- Phải ở đầu dòng hoặc sau ;
+
+**GỢI Ý BÀI TẬP:**
+puts "=== GIỚI THIỆU ==="
+puts "Trường: ĐH Bách Khoa"
+puts "Khoa: Điện tử"
+puts "=== KẾT THÚC ==="
             `
         },
         {
             id: 'tcl-02',
             title: 'Bài 2: Biến (Variables)',
             description: 'Khai báo và sử dụng biến',
-            code: `# Khai báo biến
+            code: `# ===== LÝ THUYẾT =====
+# Biến: Lưu giá trị để tái sử dụng
+# set: Gán giá trị cho biến
+# $: Lấy giá trị biến
+# []: Thực thi lệnh và trả về kết quả
+
+# ===== VÍ DỤ =====
+# Khai báo biến
 set name "Nguyen Van A"
 set age 25
 set pi 3.14159
 
-# In giá trị biến
+# Sử dụng biến
 puts "Tên: $name"
 puts "Tuổi: $age"
 puts "Pi: $pi"
 
 # Tính toán với biến
 set nextYear [expr {$age + 1}]
-puts "Năm sau bạn $nextYear tuổi"`,
-            explanation: `
-**Biến trong TCL**
+puts "Năm sau: $nextYear tuổi"
 
-- Khai báo: set tên_biến giá_trị
-- Sử dụng: $tên_biến
-- Tính toán: expr {biểu_thức}
+# Nối chuỗi
+set fullName "$name - Sinh viên"
+puts $fullName
+
+# ===== BÀI TẬP =====
+# TODO: Quản lý thông tin môn học
+# 1. Tạo biến subject (tên môn)
+# 2. Tạo biến credits (số tín chỉ)
+# 3. Tạo biến grade (điểm)
+# 4. In thông tin môn học
+# (Viết code bên dưới)
+
+`,
+            explanation: `
+**KHAI BÁO BIẾN**
+- set tên giá_trị
+- set name "An"
+- set age 20
+
+**SỬ DỤNG BIẾN**
+- $tên: Lấy giá trị
+- puts $name
+
+**THAY THẾ LỆNH: [...]**
+- [lệnh]: Thực thi và trả kết quả
+- set x [expr {5 + 3}]
+- x = 8
+
+**EXPR: TÍNH TOÁN**
+- expr {biểu_thức}
+- Bắt buộc có {}
+- Hỗ trợ +, -, *, /, %, **
+
+**GỢI Ý BÀI TẬP:**
+set subject "Web Programming"
+set credits 3
+set grade 8.5
+puts "Môn: $subject"
+puts "Tín chỉ: $credits"
+puts "Điểm: $grade"
             `
         },
         {
             id: 'tcl-03',
             title: 'Bài 3: Phép tính (Expressions)',
             description: 'Các phép toán số học',
-            code: `# Phép cộng, trừ, nhân, chia
+            code: `# ===== LÝ THUYẾT =====
+# expr: Tính toán biểu thức
+# Toán tử: +, -, *, /, %, **
+# Luôn dùng {} để bảo vệ biểu thức
+
+# ===== VÍ DỤ =====
 set a 10
 set b 3
 
+# Phép toán cơ bản
 puts "a + b = [expr {$a + $b}]"
 puts "a - b = [expr {$a - $b}]"
 puts "a * b = [expr {$a * $b}]"
@@ -60,23 +140,75 @@ puts "a / b = [expr {$a / $b}]"
 puts "a % b = [expr {$a % $b}]"
 
 # Lũy thừa
-puts "a ^ b = [expr {$a ** $b}]"`,
-            explanation: `
-**Phép toán**
+puts "a ^ 2 = [expr {$a ** 2}]"
 
-+ : Cộng
-- : Trừ
-* : Nhân
-/ : Chia
-% : Chia lấy dư
-** : Lũy thừa
+# Ưu tiên thực hiện
+set result [expr {2 + 3 * 4}]
+puts "2 + 3 * 4 = $result"
+
+set result [expr {(2 + 3) * 4}]
+puts "(2 + 3) * 4 = $result"
+
+# Chia số thực
+set result [expr {10.0 / 3}]
+puts "10.0 / 3 = $result"
+
+# ===== BÀI TẬP =====
+# TODO: Tính diện tích hình tròn
+# 1. Khai báo bán kính r = 5
+# 2. Khai báo pi = 3.14159
+# 3. Tính diện tích = pi * r^2
+# 4. Tính chu vi = 2 * pi * r
+# 5. In kết quả
+# (Viết code bên dưới)
+
+`,
+            explanation: `
+**EXPR COMMAND**
+- expr {biểu_thức}
+- {} BẮT BUỘC để tránh lỗi
+- Thực hiện tính toán
+
+**TOÁN TỬ**
+- + : cộng
+- - : trừ
+- * : nhân
+- / : chia
+- % : chia lấy dư
+- ** : lũy thừa
+
+**ƯU TIÊN**
+- *, / trước +, -
+- () thay đổi ưu tiên
+- expr {2 + 3 * 4} = 14
+- expr {(2 + 3) * 4} = 20
+
+**SỐ THỰC**
+- Dùng .0 để ép kiểu
+- 10 / 3 = 3 (nguyên)
+- 10.0 / 3 = 3.333... (thực)
+
+**GỢI Ý BÀI TẬP:**
+set r 5
+set pi 3.14159
+set area [expr {$pi * $r ** 2}]
+set circumference [expr {2 * $pi * $r}]
+puts "Diện tích: $area"
+puts "Chu vi: $circumference"
             `
         },
+
         {
             id: 'tcl-04',
             title: 'Bài 4: Điều kiện (if-else)',
             description: 'Cấu trúc rẽ nhánh',
-            code: `set score 85
+            code: `# ===== LÝ THUYẾT =====
+# if: Thực thi code khi điều kiện đúng
+# elseif, else: Các trường hợp khác
+# Toán tử so sánh: ==, !=, <, <=, >, >=
+
+# ===== VÍ DỤ =====
+set score 85
 
 if {$score >= 90} {
     puts "Xuất sắc!"
@@ -88,11 +220,28 @@ if {$score >= 90} {
     puts "Trung bình!"
 } else {
     puts "Yếu!"
-}`,
-            explanation: `
-**Câu lệnh if**
+}
 
-Cú pháp:
+# Kiểm tra số chẵn/lẻ
+set num 7
+if {$num % 2 == 0} {
+    puts "$num là số chẵn"
+} else {
+    puts "$num là số lẻ"
+}
+
+# ===== BÀI TẬP =====
+# TODO: Kiểm tra năm nhuận
+# 1. Khai báo biến year
+# 2. Năm nhuận nếu:
+#    - Chia hết cho 400, HOẶC
+#    - Chia hết cho 4 NHƯNG không chia hết cho 100
+# 3. In "Năm nhuận" hoặc "Không phải năm nhuận"
+# (Viết code bên dưới)
+
+`,
+            explanation: `
+**CẤU TRÚC IF**
 if {điều_kiện} {
     # code
 } elseif {điều_kiện_2} {
@@ -100,75 +249,171 @@ if {điều_kiện} {
 } else {
     # code
 }
+
+**TOÁN TỬ SO SÁNH**
+- == : bằng
+- != : khác
+- < : nhỏ hơn
+- <= : nhỏ hơn hoặc bằng
+- > : lớn hơn
+- >= : lớn hơn hoặc bằng
+
+**TOÁN TỬ LOGIC**
+- && : và (AND)
+- || : hoặc (OR)
+- ! : phủ định (NOT)
+
+**GỢI Ý BÀI TẬP:**
+set year 2024
+if {$year % 400 == 0 || ($year % 4 == 0 && $year % 100 != 0)} {
+    puts "Năm nhuận"
+} else {
+    puts "Không phải năm nhuận"
+}
             `
         },
         {
             id: 'tcl-05',
             title: 'Bài 5: Vòng lặp (for)',
             description: 'Lặp với số lần xác định',
-            code: `# Vòng lặp cơ bản
+            code: `# ===== LÝ THUYẾT =====
+# for: Lặp với số lần xác định
+# incr: Tăng giá trị biến
+
+# ===== VÍ DỤ =====
+# Vòng lặp cơ bản
+puts "=== Đếm từ 1 đến 5 ==="
 for {set i 1} {$i <= 5} {incr i} {
     puts "Số $i"
 }
 
-puts "---"
-
 # Bảng cửu chương
-set n 7
-puts "Bảng cửu chương $n:"
+puts ""
+puts "=== Bảng cửu chương 7 ==="
 for {set i 1} {$i <= 10} {incr i} {
-    puts "$n x $i = [expr {$n * $i}]"
-}`,
-            explanation: `
-**Vòng lặp for**
+    set result [expr {7 * $i}]
+    puts "7 x $i = $result"
+}
 
-Cú pháp:
+# Vòng lặp với bước nhảy 2
+puts ""
+puts "=== Số chẵn từ 2 đến 10 ==="
+for {set i 2} {$i <= 10} {incr i 2} {
+    puts $i
+}
+
+# ===== BÀI TẬP =====
+# TODO: Tính giai thừa n!
+# 1. Khai báo n = 5
+# 2. Tính factorial = 1 * 2 * 3 * ... * n
+# 3. Dùng vòng for
+# 4. In kết quả
+# (Viết code bên dưới)
+
+`,
+            explanation: `
+**VÒNG LẶP FOR**
 for {khởi_tạo} {điều_kiện} {bước_nhảy} {
     # code
 }
 
-incr i : tăng i lên 1
-incr i 2 : tăng i lên 2
+**INCR COMMAND**
+- incr i: Tăng i lên 1
+- incr i 2: Tăng i lên 2
+- incr i -1: Giảm i đi 1
+
+**CẤU TRÚC**
+- {set i 1}: Khởi tạo
+- {$i <= 10}: Điều kiện tiếp tục
+- {incr i}: Sau mỗi lần lặp
+
+**GỢI Ý BÀI TẬP:**
+set n 5
+set factorial 1
+for {set i 1} {$i <= $n} {incr i} {
+    set factorial [expr {$factorial * $i}]
+}
+puts "$n! = $factorial"
             `
         },
         {
             id: 'tcl-06',
             title: 'Bài 6: Vòng lặp (while)',
             description: 'Lặp theo điều kiện',
-            code: `# While loop
-set count 1
+            code: `# ===== LÝ THUYẾT =====
+# while: Lặp khi điều kiện còn đúng
+# Phải cẩn thận vòng lặp vô hạn
 
+# ===== VÍ DỤ =====
+# Đếm từ 1 đến 5
+set count 1
+puts "=== Đếm từ 1 đến 5 ==="
 while {$count <= 5} {
     puts "Count: $count"
     incr count
 }
 
-puts "---"
-
 # Tính tổng
+puts ""
+puts "=== Tính tổng 1+2+...+10 ==="
 set sum 0
 set n 1
 while {$n <= 10} {
     set sum [expr {$sum + $n}]
     incr n
 }
-puts "Tổng từ 1 đến 10: $sum"`,
-            explanation: `
-**Vòng lặp while**
+puts "Tổng: $sum"
 
-Cú pháp:
+# ===== BÀI TẬP =====
+# TODO: Tìm số Fibonacci thứ n
+# Dãy Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21...
+# F(n) = F(n-1) + F(n-2)
+# 1. Khai báo n = 10
+# 2. Tính số Fibonacci thứ n
+# 3. In kết quả
+# (Viết code bên dưới)
+
+`,
+            explanation: `
+**WHILE LOOP**
 while {điều_kiện} {
     # code
+    # Phải thay đổi điều kiện!
 }
 
-Chạy khi điều kiện đúng
+**LƯU Ý**
+- Điều kiện phải thay đổi
+- Nếu không → vòng lặp vô hạn
+- Dùng incr hoặc set
+
+**BREAK & CONTINUE**
+- break: Thoát khỏi vòng lặp
+- continue: Bỏ qua iteration hiện tại
+
+**GỢI Ý BÀI TẬP:**
+set n 10
+set a 0
+set b 1
+set count 2
+while {$count < $n} {
+    set temp [expr {$a + $b}]
+    set a $b
+    set b $temp
+    incr count
+}
+puts "Fibonacci($n) = $b"
             `
         },
         {
             id: 'tcl-07',
             title: 'Bài 7: Lists',
             description: 'Làm việc với danh sách',
-            code: `# Tạo list
+            code: `# ===== LÝ THUYẾT =====
+# List: Danh sách các giá trị
+# llength, lindex, lappend, foreach
+
+# ===== VÍ DỤ =====
+# Tạo list
 set fruits {apple banana orange grape}
 
 # Độ dài list
@@ -177,38 +422,92 @@ puts "Số phần tử: [llength $fruits]"
 # Truy cập phần tử
 puts "Phần tử đầu: [lindex $fruits 0]"
 puts "Phần tử thứ 2: [lindex $fruits 1]"
+puts "Phần tử cuối: [lindex $fruits end]"
 
 # Thêm phần tử
-lappend fruits "mango"
+lappend fruits "mango" "pineapple"
 puts "Sau khi thêm: $fruits"
 
 # Duyệt list
+puts ""
+puts "=== Duyệt list ==="
 foreach fruit $fruits {
     puts "- $fruit"
-}`,
-            explanation: `
-**Lists trong TCL**
+}
 
-llength : độ dài
-lindex : truy cập phần tử
-lappend : thêm phần tử
-foreach : duyệt list
+# Duyệt với index
+puts ""
+puts "=== Với index ==="
+set i 0
+foreach fruit $fruits {
+    puts "Index $i: $fruit"
+    incr i
+}
+
+# ===== BÀI TẬP =====
+# TODO: Tính tổng và trung bình điểm
+# 1. Tạo list scores {8.5 9.0 7.5 8.0 9.5}
+# 2. Tính tổng điểm
+# 3. Tính điểm trung bình
+# 4. Đếm số điểm >= 8.0
+# 5. In kết quả
+# (Viết code bên dưới)
+
+`,
+            explanation: `
+**LỆNH LIST**
+- llength $list: Số phần tử
+- lindex $list index: Lấy phần tử
+- lappend list item: Thêm phần tử
+- linsert $list index item: Chèn
+- lreplace $list start end: Thay thế
+
+**INDEX**
+- 0: Phần tử đầu
+- end: Phần tử cuối
+- end-1: Phần tử kế cuối
+
+**FOREACH**
+foreach item $list {
+    puts $item
+}
+- Duyệt qua từng phần tử
+
+**GỢI Ý BÀI TẬP:**
+set scores {8.5 9.0 7.5 8.0 9.5}
+set sum 0
+set count 0
+foreach score $scores {
+    set sum [expr {$sum + $score}]
+    if {$score >= 8.0} {
+        incr count
+    }
+}
+set avg [expr {$sum / [llength $scores]}]
+puts "Tổng: $sum"
+puts "TB: $avg"
+puts "Số điểm >= 8.0: $count"
             `
         },
         {
             id: 'tcl-08',
             title: 'Bài 8: Procedures (Functions)',
             description: 'Tạo hàm trong TCL',
-            code: `# Định nghĩa procedure
+            code: `# ===== LÝ THUYẾT =====
+# proc: Định nghĩa procedure (hàm)
+# Tham số: tên trong {}
+# return: Trả về giá trị
+
+# ===== VÍ DỤ =====
+# Procedure cơ bản
 proc greet {name} {
     puts "Xin chào, $name!"
 }
 
-# Gọi procedure
 greet "An"
 greet "Bình"
 
-# Procedure có return
+# Procedure với return
 proc add {a b} {
     return [expr {$a + $b}]
 }
@@ -216,26 +515,82 @@ proc add {a b} {
 set result [add 10 20]
 puts "10 + 20 = $result"
 
-# Procedure tính giai thừa
+# Procedure tính giai thừa (đệ quy)
 proc factorial {n} {
     if {$n <= 1} {
         return 1
     } else {
-        return [expr {$n * [factorial [expr {$n - 1}]]}]
+        set prev [factorial [expr {$n - 1}]]
+        return [expr {$n * $prev}]
     }
 }
 
-puts "5! = [factorial 5]"`,
-            explanation: `
-**Procedures**
+puts "5! = [factorial 5]"
 
-Cú pháp:
-proc tên {tham_số} {
+# Procedure nhiều tham số
+proc calculate_rectangle {length width} {
+    set area [expr {$length * $width}]
+    set perimeter [expr {2 * ($length + $width)}]
+
+    puts "Diện tích: $area"
+    puts "Chu vi: $perimeter"
+}
+
+puts ""
+puts "=== Hình chữ nhật 10x5 ==="
+calculate_rectangle 10 5
+
+# ===== BÀI TẬP =====
+# TODO: Tạo procedure kiểm tra số nguyên tố
+# 1. proc is_prime {n}
+# 2. Kiểm tra n có phải số nguyên tố không
+# 3. return 1 nếu là nguyên tố, 0 nếu không
+# 4. Test với: 7, 10, 13, 20
+# (Viết code bên dưới)
+
+`,
+            explanation: `
+**ĐỊNH NGHĨA PROCEDURE**
+proc tên {tham_số1 tham_số2} {
     # code
     return giá_trị
 }
 
-Gọi: tên tham_số
+**THAM SỐ**
+- Liệt kê trong {}
+- Ngăn cách bằng khoảng trắng
+- proc add {a b} {...}
+
+**RETURN**
+- return giá_trị
+- Trả về ngay lập tức
+- Nếu không return → trả về kết quả lệnh cuối
+
+**GỌI PROCEDURE**
+- tên tham_số1 tham_số2
+- set result [tên args]
+
+**ĐỆ QUY**
+- Procedure gọi chính nó
+- Phải có điều kiện dừng
+
+**GỢI Ý BÀI TẬP:**
+proc is_prime {n} {
+    if {$n <= 1} {
+        return 0
+    }
+    for {set i 2} {$i < $n} {incr i} {
+        if {$n % $i == 0} {
+            return 0
+        }
+    }
+    return 1
+}
+
+puts "7: [is_prime 7]"
+puts "10: [is_prime 10]"
+puts "13: [is_prime 13]"
+puts "20: [is_prime 20]"
             `
         }
     ],

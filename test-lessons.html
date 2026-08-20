@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Lessons</title>
+</head>
+<body>
+    <h1>Test Lessons Structure</h1>
+    <div id="output"></div>
+    <script src="lessons.js"></script>
+    <script>
+        const output = document.getElementById('output');
+        try {
+            output.innerHTML = '<p>LESSONS defined: ' + (typeof LESSONS !== 'undefined') + '</p>';
+            output.innerHTML += '<p>TCL lessons: ' + (LESSONS.tcl ? LESSONS.tcl.length : 'N/A') + '</p>';
+            output.innerHTML += '<p>Bash lessons: ' + (LESSONS.bash ? LESSONS.bash.length : 'N/A') + '</p>';
+            output.innerHTML += '<p>First TCL: ' + (LESSONS.tcl ? LESSONS.tcl[0].title : 'N/A') + '</p>';
+            output.innerHTML += '<p>First Bash: ' + (LESSONS.bash ? LESSONS.bash[0].title : 'N/A') + '</p>';
+        } catch(e) {
+            output.innerHTML = '<p style="color:red">Error: ' + e.message + '</p>';
+        }
+    </script>
+</body>
+</html>

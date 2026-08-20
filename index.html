@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCL & Bash Script Tutor - Environment IDE</title>
+    <meta name="description" content="Môi trường học lập trình và thực thi TCL & Bash Script trực tuyến chuyên nghiệp">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- CSS & Monaco Editor Styles & Highlight.js Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/editor/editor.main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Top Navigation Header -->
+        <header class="app-header">
+            <div class="brand-section">
+                <button id="sidebarMobileToggle" class="btn-icon mobile-only" title="Mở danh sách bài học">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div class="brand-logo">
+                    <span class="logo-icon">⚡</span>
+                    <div class="brand-text">
+                        <h1>Script Tutor <span class="version-badge">v1.0 Pro</span></h1>
+                        <p class="brand-sub">Môi trường thực thi TCL & Bash trực tuyến</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <div class="language-pill-group">
+                    <button class="lang-pill active" data-lang="bash">
+                        <span class="lang-icon">🐚</span> Bash Shell
+                    </button>
+                    <button class="lang-pill" data-lang="tcl">
+                        <span class="lang-icon">⚙️</span> TCL Script
+                    </button>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="shortcutsBtn" class="btn-action-ghost" title="Phím tắt (Ctrl+/)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    <span>Phím tắt</span>
+                </button>
+
+                <button id="themeToggle" class="btn-icon" title="Chuyển chế độ Sáng/Tối">
+                    <span class="theme-icon">🌙</span>
+                </button>
+
+                <a href="https://github.com/ndnhatvien/script-tutor" target="_blank" class="btn-icon github-link" title="Mã nguồn GitHub">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main IDE Layout Grid -->
+        <div class="workspace-layout">
+            <!-- Sidebar: Lesson Navigation -->
+            <aside class="sidebar-panel" id="sidebar">
+                <div class="sidebar-top">
+                    <div class="sidebar-title">
+                        <h2>📚 Giáo trình bài học</h2>
+                        <button id="sidebarCloseBtn" class="btn-icon mobile-only">✕</button>
+                    </div>
+
+                    <!-- Learning Progress Bar -->
+                    <div class="progress-box">
+                        <div class="progress-label">
+                            <span>Tiến độ học tập</span>
+                            <span id="progressText">0/0 đã học</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="progressBar" class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Search Filter -->
+                    <div class="search-box">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="lessonSearch" placeholder="Lọc bài học theo tên..." />
+                        <button id="clearSearchBtn" class="search-clear hidden">✕</button>
+                    </div>
+                </div>
+
+                <!-- Lessons List -->
+                <div class="lessons-scroll-container" id="lessonsContainer">
+                    <!-- Loaded dynamically via JavaScript -->
+                </div>
+            </aside>
+
+            <!-- Main Interactive Canvas -->
+            <main class="editor-panel">
+                <!-- Editor Top Header / Toolbar -->
+                <div class="editor-toolbar">
+                    <div class="lesson-meta-info">
+                        <div class="current-lesson-badge" id="lessonBadge">Bash</div>
+                        <h2 class="current-lesson-title" id="currentLessonTitle">Chọn bài học để bắt đầu</h2>
+                        <button id="toggleCompleteBtn" class="btn-complete-tag" title="Đánh dấu đã hoàn thành">
+                            <span class="check-icon">✓</span> <span class="complete-text">Chưa học</span>
+                        </button>
+                    </div>
+
+                    <!-- Workspace Mode Switcher -->
+                    <div class="view-mode-tabs">
+                        <button class="mode-tab active" data-view="editor">
+                            <span>💻 Editor</span>
+                        </button>
+                        <button class="mode-tab" data-view="theory">
+                            <span>📖 Lý thuyết</span>
+                        </button>
+                        <button class="mode-tab desktop-only" data-view="split">
+                            <span>⚡ Song song</span>
+                        </button>
+                    </div>
+
+                    <!-- Editor Controls -->
+                    <div class="editor-actions">
+                        <div class="font-controls">
+                            <button id="fontSizeDec" class="btn-tool" title="Giảm cỡ chữ (Ctrl+-)">A-</button>
+                            <button id="fontSizeInc" class="btn-tool" title="Tăng cỡ chữ (Ctrl++)">A+</button>
+                        </div>
+                        <button id="copyCodeBtn" class="btn-tool" title="Sao chép code">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                        <button id="resetCode" class="btn-secondary" title="Khôi phục code mẫu">
+                            <span>🔄 Reset</span>
+                        </button>
+                        <button id="runCode" class="btn-primary-glow" title="Thực thi script (Ctrl+Enter)">
+                            <span class="run-icon">▶</span>
+                            <span>Chạy Code</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Content Split Area (Editor & Theory) -->
+                <div class="workspace-body view-mode-editor" id="workspaceBody">
+                    <!-- Monaco Editor Pane -->
+                    <div class="pane-container editor-pane" id="editorPane">
+                        <div id="editor" class="monaco-editor-instance"></div>
+                    </div>
+
+                    <!-- Markdown Theory Pane -->
+                    <div class="pane-container theory-pane" id="theoryPane">
+                        <div class="theory-header">
+                            <h3>📖 Tài liệu & Hướng dẫn bài học</h3>
+                        </div>
+                        <div class="theory-content markdown-body" id="theoryContent">
+                            <!-- Markdown rendered dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Execution Terminal Pane -->
+                <div class="terminal-panel">
+                    <div class="terminal-header">
+                        <div class="terminal-title">
+                            <span class="terminal-icon">📤</span>
+                            <span>Console Output</span>
+                            <span id="statusBadge" class="status-badge status-idle">Ready</span>
+                        </div>
+                        <div class="terminal-meta">
+                            <span id="executionTime" class="execution-time-tag"></span>
+                            <button id="copyOutputBtn" class="btn-tool-sm" title="Sao chép output">📋 Copy</button>
+                            <button id="clearOutput" class="btn-tool-sm" title="Xóa màn hình output">🗑️ Xóa</button>
+                        </div>
+                    </div>
+                    <div class="terminal-body">
+                        <pre id="output" class="output-content">Chào mừng đến với TCL & Bash Script Tutor! Chọn bài học từ danh sách bên trái và nhấn "Chạy Code" (Ctrl+Enter) để thực thi.</pre>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer Bar -->
+        <footer class="app-footer">
+            <div class="footer-left">
+                <span>Môi trường học lập trình EDA & Scripting tương tác</span>
+            </div>
+            <div class="footer-right">
+                <span>Powered by <a href="https://railway.app" target="_blank">Railway API</a></span>
+                <span class="dot-separator">•</span>
+                <span>Editor by <a href="https://microsoft.github.io/monaco-editor/" target="_blank">Monaco</a></span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Shortcuts Modal -->
+    <div id="shortcutsModal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>⌨️ Phím tắt ứng dụng</h3>
+                <button id="closeShortcutsBtn" class="btn-icon">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="shortcut-item">
+                    <span class="shortcut-label">Chạy script</span>
+                    <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-label">Khôi phục code mẫu</span>
+                    <kbd>Ctrl</kbd> + <kbd>R</kbd>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-label">Xóa terminal output</span>
+                    <kbd>Ctrl</kbd> + <kbd>K</kbd>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-label">Tăng / Giảm cỡ chữ</span>
+                    <kbd>Ctrl</kbd> + <kbd>+</kbd> / <kbd>-</kbd>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-label">Mở bảng phím tắt này</span>
+                    <kbd>Ctrl</kbd> + <kbd>/</kbd>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Loading Overlay -->
+    <div id="loadingIndicator" class="loading-overlay hidden">
+        <div class="spinner-card">
+            <div class="glow-spinner"></div>
+            <span class="loading-text">Đang thực thi script trên Server...</span>
+        </div>
+    </div>
+
+    <!-- Libraries & App Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+    <script src="config.js"></script>
+    <script src="lessons.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

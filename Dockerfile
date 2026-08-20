@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Verify installations
-RUN tclsh <<< 'puts "TCL OK"' && bash -c 'echo "Bash OK"'
+RUN echo 'puts "TCL OK"' | tclsh && bash -c 'echo "Bash OK"'
 
 # Set working directory
 WORKDIR /app

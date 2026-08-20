@@ -1191,6 +1191,7 @@ is_prime 13
             `
         }
     ],
+    bash: [
         {
             id: 'bash-01',
             title: 'Bài 1: Hello World',
